@@ -1,0 +1,537 @@
+/* ========================================
+   Font Import (must be at top)
+======================================== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+
+/* ========================================
+   CSS Reset & Base Styles
+======================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    overflow: hidden;
+    /* Prevent body scroll, let snap-container handle it */
+}
+
+/* ========================================
+   Navigation Bar (Figma: node 4:2)
+======================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 285px;
+    z-index: 1000;
+}
+
+.nav-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 82px;
+    padding: 0 90px;
+}
+
+.nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: -1.98px;
+    color: red;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* ========================================
+   Scroll Snap Container
+======================================== */
+.snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
+    /* Smooth scrolling with ease-out feel */
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar for cleaner look (optional) */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.snap-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+/* ========================================
+   Snap Section Base Styles
+======================================== */
+.snap-section {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /* Forces stop at each section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.section-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.section-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.section-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.section-content p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   Hero Section (Figma: node 7:38)
+   Container base: 1545 x 814
+   All positions converted to percentages for scaling
+======================================== */
+
+/* Outer hero section - white background */
+.hero {
+    background: #ffffff;
+    /* Figma: padding 55px vertical, 179px horizontal at 1903px width */
+    padding: 55px calc(179 / 1903 * 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Remove default section styling for hero */
+.hero::after {
+    display: none;
+}
+
+/* Inner red container */
+.hero-container {
+    width: 100%;
+    max-width: 1545px;
+    aspect-ratio: 1545 / 814;
+    background: red;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Text area container - positioned for headline visibility */
+.hero-text-area {
+    position: absolute;
+    left: 5%;
+    top: 8%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+    align-items: flex-start;
+}
+
+/* Headline wrapper */
+.hero-headline-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Main headline - font scales with container */
+.hero-headline {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    /* Scale font to fit container - smaller clamp to prevent overflow */
+    font-size: clamp(20px, 3.8vw, 82px);
+    line-height: 1.12;
+    letter-spacing: -0.09em;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    text-shadow: none;
+    margin: 0;
+    text-align: left;
+}
+
+.hero-headline span {
+    display: block;
+    white-space: nowrap;
+}
+
+/* Sign-in button - smaller size */
+.hero-signin-btn {
+    width: max(100px, 8%);
+    padding: 6px 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    overflow: hidden;
+}
+
+.hero-signin-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.hero-signin-btn span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: clamp(12px, 1.1vw, 18px);
+    line-height: 1.12;
+    letter-spacing: -0.09em;
+    color: red;
+    white-space: nowrap;
+}
+
+/* SDG Logo wrapper - 73/1545 = 4.72%, 683/814 = 83.91%, 83/1545 = 5.37% w, 84/814 = 10.32% h */
+.hero-sdg-wrapper {
+    position: absolute;
+    left: 4.72%;
+    bottom: 10%;
+    /* Position from bottom instead for better scaling */
+    width: 5.37%;
+    aspect-ratio: 1;
+    background: #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.hero-sdg-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Tagline text - 184/1545 = 11.91%, positioned from bottom */
+.hero-tagline {
+    position: absolute;
+    left: 11.91%;
+    bottom: 6%;
+    /* Near bottom of container */
+    width: 32.69%;
+    /* 505/1545 */
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: clamp(12px, 1.42vw, 22px);
+    line-height: 1.12;
+    letter-spacing: -0.09em;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: none;
+    opacity: 1;
+    max-width: none;
+    text-align: left;
+}
+
+/* Hero illustration - 901/1545 = 58.32%, 174/814 = 21.38%, 574/1545 = 37.15% w, 629/814 = 77.27% h */
+.hero-illustration-wrapper {
+    position: absolute;
+    left: 58.32%;
+    top: 21.38%;
+    width: 37.15%;
+    height: 77.27%;
+}
+
+.hero-illustration {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Section 1 - Dark Blue Background */
+.section-1 {
+    background: #100f3e;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.section-1::after {
+    display: none;
+    /* Hide scroll indicator */
+}
+
+.section-1-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section-1-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Section 2 - Dark Blue Background */
+.section-2 {
+    background: #100f3e;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.section-2::after {
+    display: none;
+    /* Hide scroll indicator */
+}
+
+.section-2-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section-2-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Section 3 - Dark Blue Background */
+.section-3 {
+    background: #100f3e;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.section-3::after {
+    display: none;
+    /* Hide scroll indicator */
+}
+
+.section-3-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section-3-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Section 4 - Dark Blue Background */
+.section-4 {
+    background: #100f3e;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.section-4::after {
+    display: none;
+    /* Hide scroll indicator */
+}
+
+.section-4-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.section-4-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+    /* Removes potential inline-block spacing */
+}
+
+/* Section 5 - Dark Blue Background */
+.section-5 {
+    background: #100f3e;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.section-5::after {
+    display: none;
+    /* Hide scroll indicator */
+}
+
+.section-5-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section-5-link-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.section-5-link-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.section-5-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+/* Bottom Info - White Background */
+.bottom-info {
+    background: #ffffff;
+    padding-top: 90px;
+    /* Account for fixed navbar */
+}
+
+.bottom-info::after {
+    display: none;
+}
+
+.bottom-info-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.bottom-info-link-wrapper {
+    display: block;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.bottom-info-link-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.bottom-info-image {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* ========================================
+   Responsive Design
+======================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide on mobile - can add hamburger menu later */
+    }
+
+    .section-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-content h2 {
+        font-size: 2rem;
+    }
+
+    .section-content p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+}
